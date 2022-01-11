@@ -22,13 +22,13 @@ public class ReportController {
 
     @GetMapping("/errors")
     public String getErrors(Model model) {
-        model.addAttribute("errors", reportService.getErrors());
+        model.addAttribute("reportErrors", reportService.getErrors());
         return "errors";
     }
 
     @GetMapping("/reports")
     public String getReports(Model model) {
-        model.addAttribute("errors", reportService.getReports());
+        model.addAttribute("reports", reportService.getReports());
         return "reports";
     }
 }
