@@ -5,9 +5,24 @@
     <title>Текущие ошибки</title>
 </head>
 <body>
-<p>
-    Текущие ошибки
-</p>
+<p>Текущие ошибки</p>
+
+<table>
+    <thead>
+    <tr>
+        <th>Название проверки</th>
+        <th>Результат</th>
+        <th>Описание</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="reportError : ${reportErrors.getMessageList()}">
+        <td><a th:text="${reportError.getCheckType()}">type</a></td>
+        <td><a th:text="${reportError.getMess()}">mes</a></td>
+        <td><a th:text="${reportError.getComment()}">mes</a></td>
+    </tr>
+    </tbody>
+</table>
 
 </body>
 </html>
