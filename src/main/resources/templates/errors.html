@@ -2,24 +2,40 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Текущие ошибки</title>
+    <title>Список ошибок</title>
 </head>
 <body>
-<p>Текущие ошибки</p>
+<p>Список ошибок</p>
 
 <table>
     <thead>
     <tr>
-        <th>Название проверки</th>
-        <th>Результат</th>
-        <th>Описание</th>
+        <th>Склад</th>
+        <th>Остатки</th>
     </tr>
     </thead>
     <tbody>
-    <tr th:each="reportError : ${reportErrors.getMessageList()}">
-        <td><a th:text="${reportError.getCheckType()}">type</a></td>
-        <td><a th:text="${reportError.getMess()}">mes</a></td>
-        <td><a th:text="${reportError.getComment()}">mes</a></td>
+    <tr th:each="warehouse : ${warehouseList}">
+        <td><a th:href="@{/warehouse/{id}(id = ${warehouse.getId()})}"
+               th:text="${warehouse.getName()}"></a></td>
+
+        <td>
+            <table>
+                <thead>
+                <tr>
+                    <th>Номенклатура</th>
+                    <th>Код номенклатуры</th>
+                    <th>Остаток</th>
+                </tr>
+                </thead>
+                <tr th:each="nomen : ${warehouse.getNomenList()}">
+                    <td><a th:text="${nomen.getName()}"></a></td>
+                    <td><a th:text="${nomen.getNom_n()}"></a></td>
+                    <td><a th:text="${nomen.getQty()}"></a></td>
+                </tr>
+            </table>
+        </td>
+
     </tr>
     </tbody>
 </table>

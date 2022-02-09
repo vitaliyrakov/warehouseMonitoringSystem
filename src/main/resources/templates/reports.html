@@ -2,12 +2,43 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Отчеты</title>
+    <title>Сводный отчет по складам</title>
 </head>
 <body>
-<p>
-    Текущая отчетность
-</p>
+<p>Сводный отчет по складам</p>
+
+<table>
+    <thead>
+    <tr>
+        <th>Склад</th>
+        <th>Остатки</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="warehouse : ${warehouseList}">
+        <td><a th:href="@{/warehouse/{id}(id = ${warehouse.getId()})}"
+               th:text="${warehouse.getName()}"></a></td>
+
+        <td>
+            <table>
+                <thead>
+                <tr>
+                    <th>Номенклатура</th>
+                    <th>Код номенклатуры</th>
+                    <th>Остаток</th>
+                </tr>
+                </thead>
+                <tr th:each="nomen : ${warehouse.getNomenList()}">
+                    <td><a th:text="${nomen.getName()}"></a></td>
+                    <td><a th:text="${nomen.getNom_n()}"></a></td>
+                    <td><a th:text="${nomen.getQty()}"></a></td>
+                </tr>
+            </table>
+        </td>
+
+    </tr>
+    </tbody>
+</table>
 
 </body>
 </html>
