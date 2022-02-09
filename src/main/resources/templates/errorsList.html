@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Текущие ошибки</title>
+</head>
+<body>
+<p>Проверка складов на ошибки</p>
+
+<table>
+    <thead>
+    <tr>
+        <th>Результат</th>
+        <th>Описание</th>
+        <th>Процедура проверки</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="message : ${reportErrors.getMessageList()}">
+        <td>
+            <div th:if="${not message.getMess().isEmpty}"><img src="OK_22.png" alt="результат проверки"></div>
+            <div th:if="${message.getMess().isEmpty()}"><img src="NOT_OK_22.png" alt="результат проверки"></div>
+        </td>
+
+        <td><a th:href="@{/reports/{name}(name = ${message.getCheckType()})}"
+               th:text="${message.getComment()}">mes</a></td>
+
+        <td><a th:text="${message.getCheckType()}">type</a></td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

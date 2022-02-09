@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Список движений</title>
+</head>
+<body>
+<p>Список движений по номенклатуре </p>
+<b>
+<!--    <div th:text="${movements.get(0).getNomen().getName()}"></div>-->
+</b>
+
+<table>
+    <thead>
+    <tr>
+        <th>Источник</th>
+        <th>Приемник</th>
+        <th>Кол-во</th>
+        <th>Дата</th>
+        <th>Автор</th>
+<!--        <th>Номенклатура</th>-->
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="movement : ${movements}">
+        <td><a th:text="${movement.getWereNameFrom()}"></a></td>
+        <td><a th:text="${movement.getWereNameTo()}"></a></td>
+        <td><a th:text="${movement.getQty()}"></a></td>
+        <td><a th:text="${movement.getDate()}"></a></td>
+        <td><a th:text="${movement.getMaster()}"></a></td>
+<!--        <td><a th:text="${movement.getNomen().getName()}"></a></td>-->
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
