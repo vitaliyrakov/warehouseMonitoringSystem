@@ -8,9 +8,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.annotation.security.RolesAllowed;
+
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/")
+@RolesAllowed({"ADMIN"})
 public class ReportController {
 
     private final ReportService reportService;
