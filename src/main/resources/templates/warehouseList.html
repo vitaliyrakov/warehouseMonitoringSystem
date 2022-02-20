@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <title>Список складов логических</title>
 </head>
+
 <body>
-<p>Список складов логических</p>
+<h1>Список складов логических</h1>
+<hr>
 
 <table>
     <thead>
@@ -16,6 +18,7 @@
 <!--        <th>Остаток</th>-->
     </tr>
     </thead>
+
     <tbody>
     <tr th:each="warehouse : ${warehouseList}">
         <td><a th:href="@{/warehouse/{id}(id = ${warehouse.getId()})}"

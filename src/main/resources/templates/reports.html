@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <title>Сводный отчет по складам</title>
 </head>
+
 <body>
-<p>Сводный отчет по складам</p>
+<h1>Сводный отчет по складам</h1>
+<hr>
 
 <table>
     <thead>
@@ -14,6 +16,7 @@
         <th>Остатки</th>
     </tr>
     </thead>
+
     <tbody>
     <tr th:each="warehouse : ${warehouseList}">
         <td><a th:href="@{/warehouse/{id}(id = ${warehouse.getId()})}"
@@ -28,6 +31,7 @@
                     <th>Остаток</th>
                 </tr>
                 </thead>
+
                 <tr th:each="nomen : ${warehouse.getNomenList()}">
                     <td><a th:text="${nomen.getName()}"></a></td>
                     <td><a th:text="${nomen.getNom_n()}"></a></td>

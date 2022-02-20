@@ -3,27 +3,32 @@ package com.example.warehousemonitoringsystem.repository;
 import com.example.warehousemonitoringsystem.entity.Movement;
 import com.example.warehousemonitoringsystem.entity.Nomen;
 import com.example.warehousemonitoringsystem.entity.Warehouse;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 public class ReportRepository {
 
-    final String connString = "jdbc:DBF:////home/vit77/Programming/warehouseMonitoringSystem/src/main/resources/";
+    @Value("${dbfPath}")
+    private String connString;
+
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
 
     public List<Warehouse> getAllWarehouses() {
         List<Warehouse> warehouseList = new ArrayList<>();
+
         try {
             Class.forName("com.hxtt.sql.dbf.DBFDriver");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-        //        final String connString = "jdbc:DBF:///C:/Ramec9_2/dbf/";
-//        final String connString = "jdbc:DBF:////home/vit77/Programming/warehouseMonitoringSystem/src/main/resources/";
         try {
             Connection connection = DriverManager.getConnection(connString);
             String sql = """
@@ -41,8 +46,8 @@ public class ReportRepository {
             while (resultSet.next()) {
                 String newWareVn = resultSet.getString("name");
                 wh = warehouseList.stream().filter(w -> w.getName().equals(newWareVn)).findFirst().orElse(new Warehouse());
-                if (wh.getName()==null){
-                //(wh == null || wh.getId() != resultSet.getInt("wareVn")) {
+                if (wh.getName() == null) {
+                    //(wh == null || wh.getId() != resultSet.getInt("wareVn")) {
 //                    wh = new Warehouse();
                     wh.setName(resultSet.getString("name"));
                     wh.setId(resultSet.getInt("wareVn"));
@@ -71,44 +76,15 @@ public class ReportRepository {
     }
 
     public List<Movement> getMovementsByNomen(int id) {
-        List<Movement> movementList = new ArrayList<>();
-        try {
-            Class.forName("com.hxtt.sql.dbf.DBFDriver");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            Connection connection = DriverManager.getConnection(connString);
-            String sql = """
-                    SELECT include.k7 as qty, inoutskl.datax as date, inoutskl.master, include.dtcreate as dtCreate, ware.name as nameFrom, wTo.name as nameTo
-                    FROM inoutskl
-                    INNER JOIN include ON include.di = inoutskl.vn
-                    INNER JOIN ware ON ware.vn = inoutskl.kwere
-                    INNER JOIN ware wTo ON wTo.vn = inoutskl.kwere1
-                    INNER JOIN nomen ON nomen.vn = include.knomen and nomen.vn== """ + id;
-
-            Statement stmt = connection.createStatement();
-            ResultSet resultSet = stmt.executeQuery(sql);
-            Movement mv;
-            while (resultSet.next()) {
-                mv = new Movement();
-                mv.setQty(resultSet.getInt("qty"));
-                mv.setWereNameFrom(resultSet.getString("nameFrom"));
-                mv.setWereNameTo(resultSet.getString("nameTo"));
-                mv.setMaster(resultSet.getString("master"));
-                mv.setDate(resultSet.getDate("date"));
-                movementList.add(mv);
-            }
-            resultSet.close();
-            stmt.close();
-            connection.close();
-        } catch (
-                SQLException e) {
-            e.printStackTrace();
-        }
-        return movementList;
-
+        String sql = """
+                SELECT include.k7 as qty, inoutskl.datax as date, inoutskl.master, include.dtcreate as dtCreate, ware.name as nameFrom, wTo.name as nameTo
+                FROM inoutskl
+                INNER JOIN include ON include.di = inoutskl.vn
+                INNER JOIN ware ON ware.vn = inoutskl.kwere
+                INNER JOIN ware wTo ON wTo.vn = inoutskl.kwere1
+                INNER JOIN nomen ON nomen.vn = include.knomen and nomen.vn== """+id;
+        return jdbcTemplate.query(sql, new MovementsMapper());
+//                .stream().findAny().orElse(new Movement()).;
     }
 
 //    public int getRestByNomenWarehouse(int nomenId, int warehouseId) {
