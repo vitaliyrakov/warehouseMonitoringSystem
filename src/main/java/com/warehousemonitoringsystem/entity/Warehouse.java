@@ -1,13 +1,17 @@
-package com.example.warehousemonitoringsystem.entity;
+package com.warehousemonitoringsystem.entity;
 
 import lombok.Data;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
 @Data
 public class Warehouse {
-    public int id;
+    @NotNull
+    public int vn;
+    @NotBlank
     public String Name;
     public Boolean mask;
 

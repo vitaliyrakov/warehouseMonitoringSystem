@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Список складов логических</title>
+</head>
+
+<body>
+<h1>Список номенклатуры</h1>
+<hr>
+
+<table>
+    <thead>
+    <tr>
+        <th>VN</th>
+        <th>ВнКод</th>
+        <th>Нменклатура</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="nomen : ${nomensList}">
+        <td th:text="${nomen.getVn()}"></tdth:text></td>
+        <td th:text="${nomen.getNom_n()}"></tdth:text></td>
+        <td th:text="${nomen.getPolet()}">polet</td>
+        <!--        a th:href="@{/warehouse/{id}(id = ${warehouse.getVn()})}"-->
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

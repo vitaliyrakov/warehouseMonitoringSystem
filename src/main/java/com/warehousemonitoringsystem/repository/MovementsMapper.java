@@ -1,6 +1,6 @@
-package com.example.warehousemonitoringsystem.repository;
+package com.warehousemonitoringsystem.repository;
 
-import com.example.warehousemonitoringsystem.entity.Movement;
+import com.warehousemonitoringsystem.entity.Movement;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
@@ -16,5 +16,12 @@ public class MovementsMapper implements RowMapper<Movement> {
         mv.setMaster(rs.getString("master"));
         mv.setDate(rs.getDate("date"));
         return mv;
+//        return MovementBuilder
+//                .setQty(rs.getInt("qty"))
+//                .setWereNameFrom(rs.getString("nameFrom"))
+//                .setWereNameTo(rs.getString("nameTo"))
+//                .setMaster(rs.getString("master"))
+//                .setDate(rs.getDate("date"))
+//                .build();
     }
 }

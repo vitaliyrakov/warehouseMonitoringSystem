@@ -22,10 +22,10 @@
 
     <tbody>
     <tr th:each="nomen : ${warehouse.getNomenList()}">
-        <td><a th:text="${nomen.getName()}">mes</a></td>
+        <td><a th:text="${nomen.getPolet()}">mes</a></td>
         <td><a th:text="${nomen.getNom_n()}">mes</a></td>
 
-        <td><a th:href="@{/movement/{id}(id = ${nomen.getId()})}"
+        <td><a th:href="@{/movement/{id}(id = ${nomen.getVn()})}"
                th:text="${nomen.getQty()}">mes</a></td>
     </tr>
     </tbody>

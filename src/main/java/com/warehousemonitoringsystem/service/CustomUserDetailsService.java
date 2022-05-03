@@ -1,6 +1,6 @@
-package com.example.warehousemonitoringsystem.service;
+package com.warehousemonitoringsystem.service;
 
-import com.example.warehousemonitoringsystem.entity.User;
+import com.warehousemonitoringsystem.entity.User;
 import lombok.AllArgsConstructor;
 
 import org.springframework.security.core.userdetails.UserDetails;

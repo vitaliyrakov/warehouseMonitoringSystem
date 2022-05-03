@@ -1,4 +1,4 @@
-package com.example.warehousemonitoringsystem.config;
+package com.warehousemonitoringsystem.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;

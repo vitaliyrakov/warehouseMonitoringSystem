@@ -1,4 +1,4 @@
-package com.example.warehousemonitoringsystem.entity;
+package com.warehousemonitoringsystem.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
