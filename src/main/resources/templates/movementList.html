@@ -4,8 +4,11 @@
     <meta charset="UTF-8">
     <title>Список движений</title>
 </head>
+
 <body>
-<p>Список движений по номенклатуре </p>
+<h1>Список движений по номенклатуре </h1>
+<hr>
+
 <b>
 <!--    <div th:text="${movements.get(0).getNomen().getName()}"></div>-->
 </b>
@@ -21,6 +24,7 @@
 <!--        <th>Номенклатура</th>-->
     </tr>
     </thead>
+
     <tbody>
     <tr th:each="movement : ${movements}">
         <td><a th:text="${movement.getWereNameFrom()}"></a></td>

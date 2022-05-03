@@ -4,8 +4,11 @@
     <meta charset="UTF-8">
     <title>Список номенклатуры</title>
 </head>
+
 <body>
-<p>Список номенклатуры по складу </p>
+<h1>Список номенклатуры по складу </h1>
+<hr>
+
 <b><div th:text="${warehouse.getName()}"></div></b>
 
 <table>
@@ -16,12 +19,13 @@
         <th>Остаток</th>
     </tr>
     </thead>
+
     <tbody>
     <tr th:each="nomen : ${warehouse.getNomenList()}">
-        <td><a th:text="${nomen.getName()}">mes</a></td>
+        <td><a th:text="${nomen.getPolet()}">mes</a></td>
         <td><a th:text="${nomen.getNom_n()}">mes</a></td>
 
-        <td><a th:href="@{/movement/{id}(id = ${nomen.getId()})}"
+        <td><a th:href="@{/movement/{id}(id = ${nomen.getVn()})}"
                th:text="${nomen.getQty()}">mes</a></td>
     </tr>
     </tbody>

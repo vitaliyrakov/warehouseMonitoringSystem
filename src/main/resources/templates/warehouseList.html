@@ -4,26 +4,22 @@
     <meta charset="UTF-8">
     <title>Список складов логических</title>
 </head>
+
 <body>
-<p>Список складов логических</p>
+<h1>Список складов логических</h1>
+<hr>
 
 <table>
     <thead>
     <tr>
         <th>Склад</th>
-<!--        <th>Номенклатура</th>-->
-<!--        <th>Код номенклатуры</th>-->
-<!--        <th>Остаток</th>-->
     </tr>
     </thead>
+
     <tbody>
     <tr th:each="warehouse : ${warehouseList}">
-        <td><a th:href="@{/warehouse/{id}(id = ${warehouse.getId()})}"
+        <td><a th:href="@{/warehouse/{id}(id = ${warehouse.getVn()})}"
                th:text="${warehouse.getName()}">mes</a></td>
-
-        <!--        <td><a th:text="${warehouse.getNomenName()}">mes</a></td>-->
-<!--        <td><a th:text="${warehouse.getNom_n()}">mes</a></td>-->
-<!--        <td><a th:text="${warehouse.getQty()}">type</a></td>-->
     </tr>
     </tbody>
 </table>

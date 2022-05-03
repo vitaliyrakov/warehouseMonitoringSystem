@@ -1,6 +1,6 @@
-package com.example.warehousemonitoringsystem.config;
+package com.warehousemonitoringsystem.config;
 
-import com.example.warehousemonitoringsystem.service.CustomUserDetailsService;
+import com.warehousemonitoringsystem.service.CustomUserDetailsService;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationManager;

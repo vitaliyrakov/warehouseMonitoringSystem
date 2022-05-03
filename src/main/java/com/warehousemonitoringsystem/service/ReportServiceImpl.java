@@ -1,10 +1,7 @@
-package com.example.warehousemonitoringsystem.service;
+package com.warehousemonitoringsystem.service;
 
-import com.example.warehousemonitoringsystem.entity.Message;
-import com.example.warehousemonitoringsystem.entity.Movement;
-import com.example.warehousemonitoringsystem.entity.Report;
-import com.example.warehousemonitoringsystem.entity.Warehouse;
-import com.example.warehousemonitoringsystem.repository.ReportRepository;
+import com.warehousemonitoringsystem.entity.*;
+import com.warehousemonitoringsystem.repository.ReportRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -83,7 +80,7 @@ public class ReportServiceImpl implements ReportService {
     }
 
     private List<Warehouse> checkRestsMoveLog() {
-        List<Warehouse> whList = repository.getAllWarehouses().stream()
+        List<Warehouse> whList = repository.getAllWarehouses_old().stream()
 //                .filter(w -> w.getQty() > 0 && w.mask)
                 .filter(w -> w.mask)
                 .toList();
@@ -93,7 +90,7 @@ public class ReportServiceImpl implements ReportService {
     }
 
     private List<Warehouse> checkRestsLogClose() {
-        List<Warehouse> whList = repository.getAllWarehouses().stream()
+        List<Warehouse> whList = repository.getAllWarehouses_old().stream()
 //                .filter(w -> w.getQty() > 0 && w.mask)
                 .filter(w -> w.mask)
                 .toList();
@@ -104,7 +101,7 @@ public class ReportServiceImpl implements ReportService {
     }
 
     private List<Warehouse> checkRestsLogExt() {
-        List<Warehouse> whList = repository.getAllWarehouses().stream()
+        List<Warehouse> whList = repository.getAllWarehouses_old().stream()
 //                .filter(w -> w.getQty() > 0 && w.mask)
                 .filter(w -> w.mask)
                 .toList();
@@ -123,14 +120,14 @@ public class ReportServiceImpl implements ReportService {
 
     @Override
     public List<Warehouse> getState() {
-        return repository.getAllWarehouses().stream()
+        return repository.getAllWarehouses_old().stream()
                 .sorted(Comparator.comparing(Warehouse::getName)).toList();
     }
 
     @Override
     public List<Warehouse> getAllWarehouse() {
         return repository.getAllWarehouses().stream()
-        .sorted(Comparator.comparing(Warehouse::getName)).toList();
+                .sorted(Comparator.comparing(Warehouse::getName)).toList();
     }
 
     @Override
@@ -143,14 +140,14 @@ public class ReportServiceImpl implements ReportService {
         if (name.equals("checkRestsLogClose")) {
             return checkRestsLogClose();
         } else {
-            return repository.getAllWarehouses().stream()
+            return repository.getAllWarehouses_old().stream()
                     .sorted(Comparator.comparing(Warehouse::getName)).toList();
         }
     }
 
     @Override
     public Warehouse getWarehouseByID(int id) {
-        Optional<Warehouse> wh = getAllWarehouse().stream().filter(w -> w.getId() == id).findAny();
+        Optional<Warehouse> wh = getAllWarehouse().stream().filter(w -> w.getVn() == id).findAny();
         return wh.orElse(new Warehouse());
     }
 
@@ -165,4 +162,8 @@ public class ReportServiceImpl implements ReportService {
 //        return rest;
 //    }
 
+    @Override
+    public List<Nomen> getAllNomens() {
+        return repository.getAllNomens();
+    }
 }

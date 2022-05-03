@@ -1,6 +1,6 @@
-package com.example.warehousemonitoringsystem.service;
+package com.warehousemonitoringsystem.service;
 
-import com.example.warehousemonitoringsystem.entity.User;
+import com.warehousemonitoringsystem.entity.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

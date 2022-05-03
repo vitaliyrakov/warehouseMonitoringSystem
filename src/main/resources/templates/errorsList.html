@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <title>Текущие ошибки</title>
 </head>
+
 <body>
-<p>Проверка складов на ошибки</p>
+<h1>Проверка складов на ошибки</h1>
+<hr>
 
 <table>
     <thead>
@@ -15,6 +17,7 @@
         <th>Процедура проверки</th>
     </tr>
     </thead>
+
     <tbody>
     <tr th:each="message : ${reportErrors.getMessageList()}">
         <td>

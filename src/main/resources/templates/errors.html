@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <title>Список ошибок</title>
 </head>
+
 <body>
-<p>Список ошибок</p>
+<h1>Список ошибок</h1>
+<hr>
 
 <table>
     <thead>
@@ -14,9 +16,10 @@
         <th>Остатки</th>
     </tr>
     </thead>
+
     <tbody>
     <tr th:each="warehouse : ${warehouseList}">
-        <td><a th:href="@{/warehouse/{id}(id = ${warehouse.getId()})}"
+        <td><a th:href="@{/warehouse/{id}(id = ${warehouse.getVn()})}"
                th:text="${warehouse.getName()}"></a></td>
 
         <td>
@@ -28,8 +31,9 @@
                     <th>Остаток</th>
                 </tr>
                 </thead>
+
                 <tr th:each="nomen : ${warehouse.getNomenList()}">
-                    <td><a th:text="${nomen.getName()}"></a></td>
+                    <td><a th:text="${nomen.getPolet()}"></a></td>
                     <td><a th:text="${nomen.getNom_n()}"></a></td>
                     <td><a th:text="${nomen.getQty()}"></a></td>
                 </tr>
